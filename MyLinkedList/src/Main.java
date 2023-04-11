@@ -29,10 +29,9 @@ public class Main {
         System.out.println("Index : " + list.search(3));
         System.out.println("Size : " + list.size() + "\n");
 
-        boolean isReplaced = list.replace(0, 20);
+        list.replace(0, 20);
         System.out.println("Replace element with index 0");
         System.out.println("List : " + list);
-        System.out.println("Is Replaced : " + isReplaced);
         System.out.println("Size : " + list.size() + "\n");
 
         list.remove(3);

@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MyLinkedList list = new MyLinkedList();
+        MyLinkedList<Integer> list = new MyLinkedList<>();
         System.out.println("Create List");
         System.out.println("List : " + list);
         System.out.println("Size : " + list.size() + "\n");

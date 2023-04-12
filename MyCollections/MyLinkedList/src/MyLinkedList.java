@@ -3,10 +3,10 @@ import java.util.Arrays;
 /**
  * A doubly linked list implementation in Java.
  */
-public class MyLinkedList {
+public class MyLinkedList<E> {
 
-    private Node head;
-    private Node tail;
+    private Node<E> head;
+    private Node<E> tail;
     private int size;
 
     /**
@@ -14,8 +14,8 @@ public class MyLinkedList {
      *
      * @param value the value to add
      */
-    public void add(int value) {
-        Node newNode = new Node(value);
+    public void add(E value) {
+        Node<E> newNode = new Node<>(value);
         if (head == null) {
             head = newNode;
             tail = newNode;
@@ -33,17 +33,17 @@ public class MyLinkedList {
      * @param index the index to add the value at
      * @param value the value to add
      */
-    public void add(int index, int value) {
+    public void add(int index, E value) {
         if (index >= size || index < 0) {
             throw new IllegalArgumentException("Invalid index");
         }
-        Node newNode = new Node(value);
+        Node<E> newNode = new Node<>(value);
         if (index == 0) {
             newNode.next = head;
             head.prev = newNode;
             head = newNode;
         } else {
-            Node currentNode;
+            Node<E> currentNode;
             if (index < size / 2) {
                 currentNode = head;
                 for (int i = 0; i < index - 1; i++) {
@@ -68,11 +68,11 @@ public class MyLinkedList {
      *
      * @param index the index to return value at
      */
-    public int get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index or size is 0");
         } else {
-            Node currentNode;
+            Node<E> currentNode;
             if (index < size / 2) {
                 currentNode = head;
                 for (int i = 0; i < index; i++) {
@@ -93,8 +93,8 @@ public class MyLinkedList {
      *
      * @param value the value to return index at
      */
-    public int search(int value) {
-        Node currentNode = head;
+    public int search(E value) {
+        Node<E> currentNode = head;
         for (int i = 0; i < size; i++) {
             if (currentNode.value == value) return i;
             currentNode = currentNode.next;
@@ -108,11 +108,11 @@ public class MyLinkedList {
      * @param index the index to replace the value at
      * @param value the value to replace
      */
-    public void replace(int index, int value) {
+    public void replace(int index, E value) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index or size is 0");
         } else {
-            Node currentNode;
+            Node<E> currentNode;
             if (index < size / 2) {
                 currentNode = head;
                 for (int i = 0; i < index; i++) {
@@ -127,6 +127,7 @@ public class MyLinkedList {
             currentNode.value = value;
         }
     }
+
     /**
      * Removes value at the specified index in the list.
      *
@@ -141,7 +142,7 @@ public class MyLinkedList {
         } else if (index == size - 1) {
             tail = tail.prev;
         } else {
-            Node currentNode;
+            Node<E> currentNode;
             if (index < size / 2) {
                 currentNode = head;
                 for (int i = 0; i < index - 1; i++) {
@@ -171,8 +172,8 @@ public class MyLinkedList {
      */
     @Override
     public String toString() {
-        int[] elements = new int[size];
-        Node currentNode = head;
+        Object[] elements = new Object[size];
+        Node<E> currentNode = head;
         for (int i = 0; i < size; i++) {
             elements[i] = currentNode.value;
             currentNode = currentNode.next;
@@ -183,13 +184,13 @@ public class MyLinkedList {
     /**
      * Represents a node in the linked list.
      */
-    private static class Node {
+    private static class Node<E> {
 
-        private Node next;
-        private Node prev;
-        private int value;
+        private Node<E> next;
+        private Node<E> prev;
+        private E value;
 
-        private Node(int value) {
+        private Node(E value) {
             this.value = value;
         }
     }
